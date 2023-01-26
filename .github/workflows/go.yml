@@ -27,7 +27,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: ${{ secrets.DOCKER_USERNAME }}/hello-gitops
+        repository: ${{ secrets.DOCKER_USERNAME }}/github-action
         tags: ${{ github.sha }}, latest
 
   deploy:
@@ -54,11 +54,11 @@ jobs:
         
     - name: Commit files
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "sania@wanclouds.net"
+        git config --local user.name "sania-123"
         git commit -am "Bump docker tag"
 
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.TOKEN }}
