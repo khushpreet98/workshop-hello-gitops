@@ -39,11 +39,6 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Setup Kustomize
-      uses: imranismail/setup-kustomize@v1
-      with:
-        kustomize-version: "3.6.1"
-
     - name: Update Kubernetes resources
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
