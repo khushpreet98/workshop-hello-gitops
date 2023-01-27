@@ -38,14 +38,6 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-
-    - name: Update Kubernetes resources
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      run: |
-       cd kustomize/base
-       kustomize edit set image hello-gitops=$DOCKER_USERNAME/hello-gitops:$GITHUB_SHA
-       cat kustomization.yaml
         
     - name: Commit files
       run: |
