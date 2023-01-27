@@ -43,9 +43,3 @@ jobs:
       run: |
         git config --local user.email "sania@wanclouds.net"
         git config --local user.name "sania-123"
-        git commit -am "Bump docker tag"
-        
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.TOKEN }}
