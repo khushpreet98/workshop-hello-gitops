@@ -4,6 +4,7 @@ metadata:
   labels:
     app: hello-gitops
   name: hello-gitops
+  namespace: gitops
 spec:
   replicas: 1
   selector:
