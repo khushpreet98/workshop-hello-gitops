@@ -15,7 +15,7 @@ spec:
         app: hello-gitops
     spec:
       containers:
-        - image: hello-gitops
+        - image: sania77/github-action:latest
           name: hello-gitops
           ports:
             - name: http
