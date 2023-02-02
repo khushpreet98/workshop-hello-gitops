@@ -7,7 +7,7 @@ on:
       - develop
 
 jobs:
-  build-push:
+  build:
     name: Build
     runs-on: ubuntu-latest
     
@@ -23,18 +23,18 @@ jobs:
     - name: Test
       run: |
         CGO_ENABLED=0 go test ./...
-    
-    - name: set outout 
-    - id: commit
-      run: pr-mpt/actions-commit-hash@v2
         
+    - name: Set outputs
+      id: image-tag
+      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)" 
+      
     - name: Build and push Docker image
       uses: docker/build-push-action@v1.1.0
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ secrets.DOCKER_USERNAME }}/github-action
-        tags: ${{ steps.commit.outputs.short }}
+        tags: ${{ steps.image-tag.outputs.sha_short }}
 
   deploy:
     name: Deploy
