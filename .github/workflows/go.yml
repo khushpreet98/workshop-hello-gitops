@@ -24,13 +24,17 @@ jobs:
       run: |
         CGO_ENABLED=0 go test ./...
         
+    - name: set outout    
+    - id: commit
+      uses: pr-mpt/actions-commit-hash@v2
+        
     - name: Build and push Docker image
       uses: docker/build-push-action@v1.1.0
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ secrets.DOCKER_USERNAME }}/github-action
-        tags: ${{ github.sha }}, latest
+        tags: ${{ steps.commit.outputs.short }}
 
   deploy:
     name: Deploy
