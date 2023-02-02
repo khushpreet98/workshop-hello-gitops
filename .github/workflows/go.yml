@@ -11,7 +11,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     
-  steps:
+    steps:
     - name: Set up Go 1.x
       uses: actions/setup-go@v2
       with:
@@ -23,9 +23,9 @@ jobs:
     - name: Test
       run: |
         CGO_ENABLED=0 go test ./...
-  steps: 
-    - name: set outout    
+    
     - id: commit
+    - name: set outout    
       uses: pr-mpt/actions-commit-hash@v2
         
     - name: Build and push Docker image
