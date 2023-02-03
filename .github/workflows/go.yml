@@ -35,6 +35,9 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ secrets.DOCKER_USERNAME }}/github-action
         tags: ${{ steps.image-tag.outputs.sha_short }}
+    
+    - name: Upate the image-tag with commit id
+      run: yq -i  eval '.spec.template.spec.containers.image = "sania77/github-action:${{ steps.image-tag.outputs.sha_short }}"' kustomize/base/deployment.yaml
 
   deploy:
     name: Deploy
